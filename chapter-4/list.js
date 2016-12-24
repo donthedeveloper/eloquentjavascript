@@ -14,23 +14,35 @@ function arrayToList(arr) {
 
 function listToArray(list) {
   var returnArr = [];
-  
+   
   function recursion(obj) {
-    if (obj.rest === null) {
-      returnArr.push( obj.value );
-    } else {
-      returnArr.push(obj.value);
-      recursion(obj.rest)
+    returnArr.push( obj.value );
+    
+    if (obj.rest !== null) {
+      recursion(obj.rest);
     }
   }
   
-  returnArr.push(list.value);
-  recursion(list.rest);
-  
+  recursion(list);  
   return returnArr;
-  
+}
+
+
+function prepend(elem, list) {
+  if (list === null) {
+    return arrayToList([elem]);
+  } else {
+    return arrayToList( [elem].concat( listToArray(list) ) );
+  }
+}
+
+
+function nth(list, index) {
+  return listToArray(list)[index];
 }
 
 
 console.log( arrayToList([10, 20]) );
 console.log( listToArray( arrayToList([10, 20, 30]) ) );
+console.log( prepend(10, prepend(20, null) ) );
+console.log( nth( arrayToList([10,20,30]), 1) );
