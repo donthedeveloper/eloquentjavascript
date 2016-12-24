@@ -54,8 +54,7 @@ function nth(list, index) {
 
 // this is the recursive version of nth hinted by the.. hints!
 function nth(list, index) {
-  if (index === 0) {
-    console.log(list);
+  if (!index) {
     return list.value;
   } else {
     return nth(list.rest, index-1);
@@ -66,4 +65,4 @@ function nth(list, index) {
 console.log( arrayToList([10, 20]) );
 console.log( listToArray( arrayToList([10, 20, 30]) ) );
 console.log( prepend(10, prepend(20, null) ) );
-console.log( nth( arrayToList([10,20,30]), 1) );
+console.log( nth( arrayToList([10,20,30]), 5) );
